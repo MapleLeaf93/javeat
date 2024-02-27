@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Addre
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +40,11 @@ public class Restaurant {
     private int positionX, positionY;
     private int maxDeliveryDistance;
     private Double deliveryPricePerUnit;
-    private List<String> foodType;
+
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "foodTypes", joinColumns = @JoinColumn(name = "restaurant_id"))
+    @Column(name = "foodType", nullable = false)
+    private List<String> foodTypes;
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
