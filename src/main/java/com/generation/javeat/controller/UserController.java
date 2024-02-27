@@ -35,7 +35,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserDtoRLog dto) {
 
         String mail = dto.getMail();
