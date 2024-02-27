@@ -3,14 +3,19 @@ package com.generation.javeat.entities;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,8 +27,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @SuperBuilder
 
-public class Restaurant 
-{
+public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -36,11 +40,12 @@ public class Restaurant
     private List<String> foodType;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "restaurant",fetch = FetchType.EAGER)
-    private Set <Menu> menu;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "menu", referencedColumnName = "id")
+    private Menu menu;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "delivery", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private Set<Delivery> deliveries;
 
 }
