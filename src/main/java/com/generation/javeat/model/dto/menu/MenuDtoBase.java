@@ -12,5 +12,5 @@ import lombok.experimental.SuperBuilder;
 
 public class MenuDtoBase 
 {
-    
+    //ok
 }
