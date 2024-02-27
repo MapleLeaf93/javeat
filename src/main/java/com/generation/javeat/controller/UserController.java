@@ -23,8 +23,7 @@ public class UserController {
 
         User u = dto.uConv.dtoRToUser(dto);
 
-        if (u.isValid()) // aggiungere metodo isValid su entità user
-
+        if (u.isValid()) 
             return new ResponseEntity<User>(uRepo.save(u), HttpStatus.OK);
 
         return new ResponseEntity<String>("User non valido", HttpStatus.BAD_REQUEST);
