@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.javeat.model.dto.resturant.RestaurantDtoWSimple;
@@ -19,9 +20,9 @@ public class RestaurantController {
     @Autowired
     RestaurantConverter rConv;
 
-    @GetMapping("/restaurants")
-    public List<RestaurantDtoWSimple> getAllRestaurants() {
+    @GetMapping("/restaurants/{id}")
+    public List<RestaurantDtoWSimple> getAllRestaurants(@PathVariable Integer id) {
 
-        return rRepo.findAll().stream().map(i -> rConv.restaurantToDtoWSimple(i)).toList();
+        return rRepo.findAll().stream().map(i -> rConv.restaurantToDtoWSimple(i, id)).toList();
     }
 }

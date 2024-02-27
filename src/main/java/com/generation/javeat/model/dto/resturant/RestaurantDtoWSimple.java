@@ -2,6 +2,8 @@ package com.generation.javeat.model.dto.resturant;
 
 import java.util.List;
 
+import com.generation.javeat.entities.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class RestaurantDtoWSimple {
 
+    Integer id;
     String name, imgUrl;
     private List<String> foodTypes;
     boolean isOpen; // creare metodo su converter

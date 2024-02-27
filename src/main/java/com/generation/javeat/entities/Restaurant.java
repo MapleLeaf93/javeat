@@ -1,5 +1,6 @@
 package com.generation.javeat.entities;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
@@ -38,7 +39,7 @@ public class Restaurant {
     private Integer id;
 
     private String name, phone, imgUrl;
-    private int openingHour, closingHour;
+    private LocalTime openingHour, closingHour;
     private int positionX, positionY;
     private int maxDeliveryDistance;
     private Double deliveryPricePerUnit;
