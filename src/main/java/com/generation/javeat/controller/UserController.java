@@ -45,7 +45,7 @@ public class UserController {
         User u = uRepo.findByMail(mail);
 
         if (u != null && u.getPassword().equals(password))
-            return new ResponseEntity<UserDtoWLog>(uConv.userToDtoLogW(u), HttpStatus.OK);
+            return new ResponseEntity<UserDtoWLog>(uConv.userToDtoWLog(u), HttpStatus.OK);
 
         return new ResponseEntity<String>("Invalid credentials", HttpStatus.UNAUTHORIZED);
     }
