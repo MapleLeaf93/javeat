@@ -1,15 +1,13 @@
 package com.generation.javeat.model.dto.menu;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-@Data
-@NoArgsConstructor
 @SuperBuilder
+@Data
 
-public class MenuDtoBase 
+public class MenuDtoR extends MenuDtoBase
 {
-    //ok
+    public MenuDtoR(){}
+    private Integer id;
 }
