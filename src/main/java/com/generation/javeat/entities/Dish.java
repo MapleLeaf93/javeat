@@ -5,6 +5,9 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,19 +27,22 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @SuperBuilder
 
-public class Dish 
-{
+public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name, category;
     private Double price;
+
+    @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "ingredients", joinColumns = @JoinColumn(name = "dish_id"))
+    @Column(name = "ingredient", nullable = false)
     private List<String> ingredients;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "dish",fetch = FetchType.EAGER)
-    private Set <DishToDelivery> deliveries;
+    @OneToMany(mappedBy = "dish", fetch = FetchType.EAGER)
+    private Set<DishToDelivery> deliveries;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
