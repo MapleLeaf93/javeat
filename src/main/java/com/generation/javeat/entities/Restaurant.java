@@ -40,7 +40,7 @@ public class Restaurant
     private Set <Menu> menu;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "Delivery", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "delivery", fetch = FetchType.EAGER)
     private Set<Delivery> deliveries;
 
 }
