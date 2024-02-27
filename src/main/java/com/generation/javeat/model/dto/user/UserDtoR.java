@@ -6,8 +6,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Data
 
-public class UserDtoR extends UserDtoBase
-{
-    public UserDtoR(){}
-    private Integer id;
+public class UserDtoR extends UserDtoBase {
+    public UserDtoR() {
+    }
 }
