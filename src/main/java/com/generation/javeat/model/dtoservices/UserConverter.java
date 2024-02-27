@@ -21,9 +21,8 @@ public class UserConverter {
                 .build();
     }
 
-    public UserDtoWLog userToDtoLogW(User u)
-    {
-        return  UserDtoWLog
+    public UserDtoWLog userToDtoWLog(User u) {
+        return UserDtoWLog
                 .builder()
                 .id(u.getId())
                 .mail(u.getMail())

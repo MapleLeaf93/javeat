@@ -1,5 +1,7 @@
 package com.generation.javeat.model.dto.resturant;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +11,11 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
+public class RestaurantDtoWSimple {
 
-public class ResturantDtoBase {
-    private String name, phone, imgUrl;
-    private int openingHour, closingHour, positionX, positionY;
+    String name, imgUrl;
+    private List<String> foodTypes;
+    boolean isOpen; // creare metodo su converter
+    int distance; // creare metodo su converter
 
 }
