@@ -45,7 +45,7 @@ public class Delivery
     private Restaurant restaurant;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "DishToDelivery", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "dishToDelivery", fetch = FetchType.EAGER)
     private Set<DishToDelivery> dishesDeliveries;
-    
+
 }
