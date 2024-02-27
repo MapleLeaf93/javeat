@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.generation.javeat.entities.User;
 import com.generation.javeat.model.dto.user.UserDtoR;
 import com.generation.javeat.model.dto.user.UserDtoRLog;
+import com.generation.javeat.model.dto.user.UserDtoWLog;
 import com.generation.javeat.model.dtoservices.UserConverter;
 import com.generation.javeat.repositories.UserRepository;
 
@@ -44,7 +45,7 @@ public class UserController {
         User u = uRepo.findByMail(mail);
 
         if (u != null && u.getPassword().equals(password))
-            return new ResponseEntity<User>(u, HttpStatus.OK);
+            return new ResponseEntity<UserDtoWLog>(uConv.userToDtoLogW(u), HttpStatus.OK);
 
         return new ResponseEntity<String>("Invalid credentials", HttpStatus.UNAUTHORIZED);
     }

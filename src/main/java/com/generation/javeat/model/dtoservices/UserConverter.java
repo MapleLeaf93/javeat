@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.generation.javeat.entities.User;
 import com.generation.javeat.model.dto.user.UserDtoR;
+import com.generation.javeat.model.dto.user.UserDtoWLog;
 
 @Service
 public class UserConverter {
@@ -17,6 +18,16 @@ public class UserConverter {
                 .phone(dto.getPhone())
                 .positionX(dto.getPositionX())
                 .positionY(dto.getPositionY())
+                .build();
+    }
+
+    public UserDtoWLog userToDtoLogW(User u)
+    {
+        return  UserDtoWLog
+                .builder()
+                .id(u.getId())
+                .mail(u.getMail())
+                .password(u.getPassword())
                 .build();
     }
 
