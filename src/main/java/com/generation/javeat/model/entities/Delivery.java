@@ -57,7 +57,7 @@ public class Delivery {
 
     public double getRiderRevenue() {
 
-        return 0.0;
+        return distance * restaurant.getDeliveryPricePerUnit() ;
     }
 
     public double getTotalPrice() {

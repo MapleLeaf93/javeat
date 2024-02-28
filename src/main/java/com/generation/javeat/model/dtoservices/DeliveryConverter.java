@@ -43,7 +43,9 @@ public class DeliveryConverter {
 
     private LocalTime calculateArrival(DeliveryDtoRPost dto) {
 
-        return LocalTime.now(); // PROVVISORIO
+        return LocalTime.now().plusHours(dto.getExpected_arrival().getHour())
+                .plusMinutes(dto.getExpected_arrival().getMinute())
+                .plusSeconds(dto.getExpected_arrival().getSecond());
     }
 
     private int calculateDistance(Restaurant r, User u) {

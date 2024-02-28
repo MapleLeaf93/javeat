@@ -15,7 +15,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class DeliveryDtoRPost extends DeliveryDtoBase {
 
-    Integer user_id;
-    Integer restaurant_id;
+    private Integer user_id;
+    private Integer restaurant_id;
     private Set<DishToDelivery> dishesDeliveries;
 }
