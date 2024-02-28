@@ -13,6 +13,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class RestaurantDtoWSimple {
 
+    Integer id;
     String name, imgUrl;
     private List<String> foodTypes;
     boolean isOpen; // creare metodo su converter
