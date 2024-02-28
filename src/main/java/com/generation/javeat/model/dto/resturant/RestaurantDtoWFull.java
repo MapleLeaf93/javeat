@@ -1,6 +1,10 @@
 package com.generation.javeat.model.dto.resturant;
 
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Set;
+
+import com.generation.javeat.entities.Dish;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,12 +15,13 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public class RestaurantDtoWSimple {
+public class RestaurantDtoWFull extends ResturantDtoBase {
 
     Integer id;
-    String name, imgUrl;
+    String name, phone, imgUrl;
     private List<String> foodTypes;
-    boolean isOpen;
+    LocalTime openingHour, closingHour;
     int distance;
+    Set<Dish> menu;
 
 }

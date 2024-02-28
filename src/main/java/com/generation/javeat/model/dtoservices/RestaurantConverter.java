@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.generation.javeat.entities.Restaurant;
 import com.generation.javeat.entities.User;
+import com.generation.javeat.model.dto.resturant.RestaurantDtoWFull;
 import com.generation.javeat.model.dto.resturant.RestaurantDtoWSimple;
 import com.generation.javeat.repositories.UserRepository;
 
@@ -31,6 +32,23 @@ public class RestaurantConverter {
                 .build();
     }
 
+    public RestaurantDtoWFull restaurantToDtoWFull(Restaurant r, Integer user_id) {
+
+        User currentUser = uRepo.findById(user_id).get();
+
+        return RestaurantDtoWFull
+                .builder()
+                .id(r.getId())
+                .name(r.getName())
+                .imgUrl(r.getImgUrl())
+                .foodTypes(r.getFoodTypes())
+                .openingHour(r.getOpeningHour())
+                .closingHour(r.getClosingHour())
+                .distance(calculateDistance(r, currentUser))
+                .menu(r.getMenu().getDishes())
+                .build();
+    }
+
     private int calculateDistance(Restaurant r, User currentUser) {
 
         int xr = r.getPositionX();
@@ -44,9 +62,8 @@ public class RestaurantConverter {
     }
 
     private boolean isOpen(Restaurant r) {
-        
+
         return LocalTime.now().isBefore(r.getClosingHour()) && LocalTime.now().isAfter(r.getOpeningHour());
     }
 
-    
 }
