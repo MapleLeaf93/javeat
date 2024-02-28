@@ -1,6 +1,6 @@
 package com.generation.javeat.entities;
 
-import java.util.Set;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,10 +14,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -33,7 +36,7 @@ public class User {
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<Delivery> deliveries;
+    private List<Delivery> deliveries;
 
     public boolean isValidEmail(String email) {
         Pattern pattern = Pattern

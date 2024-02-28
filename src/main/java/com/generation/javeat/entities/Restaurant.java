@@ -4,10 +4,6 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
-
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -23,11 +19,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
