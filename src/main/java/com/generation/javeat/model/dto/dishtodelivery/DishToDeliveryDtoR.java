@@ -1,13 +1,16 @@
 package com.generation.javeat.model.dto.dishtodelivery;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-@SuperBuilder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
+public class DishToDeliveryDtoR extends DishToDeliveryDtoBase {
 
-public class DishToDeliveryDtoR extends DishToDeliveryDtoBase
-{
-    public DishToDeliveryDtoR(){}
-    private Integer id;
+    private Integer dish_id;
+    private Integer delivery_id;
 }

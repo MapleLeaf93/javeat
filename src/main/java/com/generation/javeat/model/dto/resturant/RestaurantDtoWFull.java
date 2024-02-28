@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
-import com.generation.javeat.entities.Dish;
+import com.generation.javeat.model.entities.Dish;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

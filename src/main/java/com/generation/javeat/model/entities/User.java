@@ -1,4 +1,4 @@
-package com.generation.javeat.entities;
+package com.generation.javeat.model.entities;
 
 import java.util.List;
 import java.util.regex.Matcher;

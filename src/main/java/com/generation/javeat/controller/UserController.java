@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.generation.javeat.entities.User;
 import com.generation.javeat.model.dto.user.UserDtoR;
 import com.generation.javeat.model.dto.user.UserDtoRLog;
 import com.generation.javeat.model.dto.user.UserDtoWLog;
 import com.generation.javeat.model.dtoservices.UserConverter;
+import com.generation.javeat.model.entities.User;
 import com.generation.javeat.repositories.UserRepository;
 
 @RestController

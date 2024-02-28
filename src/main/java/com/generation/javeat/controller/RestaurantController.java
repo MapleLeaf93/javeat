@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.generation.javeat.entities.Restaurant;
 import com.generation.javeat.model.dto.resturant.RestaurantDtoWFull;
 import com.generation.javeat.model.dto.resturant.RestaurantDtoWSimple;
 import com.generation.javeat.model.dtoservices.RestaurantConverter;
+import com.generation.javeat.model.entities.Restaurant;
 import com.generation.javeat.repositories.RestaurantRepository;
 
 @RestController
@@ -28,7 +28,7 @@ public class RestaurantController {
         return rRepo.findAll().stream().map(i -> rConv.restaurantToDtoWSimple(i, id)).toList();
     }
 
-    @GetMapping("/restaurant/full/{id}/{id}")
+    @GetMapping("/restaurant/full/{user_id}/{res_id}")
     public RestaurantDtoWFull getRestaurantFull(@PathVariable Integer user_id, @PathVariable Integer res_id) {
 
         Restaurant r = rRepo.findById(res_id).get();
