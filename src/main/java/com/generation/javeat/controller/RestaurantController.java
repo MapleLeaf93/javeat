@@ -28,7 +28,7 @@ public class RestaurantController {
         return rRepo.findAll().stream().map(i -> rConv.restaurantToDtoWSimple(i, id)).toList();
     }
 
-    @GetMapping("/restaurant/full/{id}/{id}")
+    @GetMapping("/restaurant/full/{user_id}/{res_id}")
     public RestaurantDtoWFull getRestaurantFull(@PathVariable Integer user_id, @PathVariable Integer res_id) {
 
         Restaurant r = rRepo.findById(res_id).get();
