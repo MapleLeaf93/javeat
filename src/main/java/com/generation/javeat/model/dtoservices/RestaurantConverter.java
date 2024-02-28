@@ -5,10 +5,10 @@ import java.time.LocalTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.generation.javeat.entities.Restaurant;
-import com.generation.javeat.entities.User;
 import com.generation.javeat.model.dto.resturant.RestaurantDtoWFull;
 import com.generation.javeat.model.dto.resturant.RestaurantDtoWSimple;
+import com.generation.javeat.model.entities.Restaurant;
+import com.generation.javeat.model.entities.User;
 import com.generation.javeat.repositories.UserRepository;
 
 @Service

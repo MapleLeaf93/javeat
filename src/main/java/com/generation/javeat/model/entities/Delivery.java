@@ -1,7 +1,8 @@
-package com.generation.javeat.entities;
+package com.generation.javeat.model.entities;
 
 import java.time.LocalTime;
 import java.util.Set;
+import java.util.stream.Collector;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -49,4 +50,18 @@ public class Delivery {
     @OneToMany(mappedBy = "delivery", fetch = FetchType.EAGER)
     private Set<DishToDelivery> dishesDeliveries;
 
+    public double getDishesPrice() {
+
+        return dishesDeliveries.stream().mapToDouble(i -> i.getDish().getPrice()).sum();
+    }
+
+    public double getRiderRevenue() {
+
+        return 0.0;
+    }
+
+    public double getTotalPrice() {
+
+        return getDishesPrice() + getRiderRevenue();
+    }
 }

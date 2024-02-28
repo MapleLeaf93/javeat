@@ -1,4 +1,4 @@
-package com.generation.javeat.entities;
+package com.generation.javeat.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,8 +22,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @SuperBuilder
 
-public class DishToDelivery 
-{
+public class DishToDelivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
