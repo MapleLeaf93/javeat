@@ -25,7 +25,8 @@ public class RestaurantController {
     @GetMapping("/restaurants/{id}")
     public List<RestaurantDtoWSimple> getAllRestaurants(@PathVariable Integer id) {
 
-        return rRepo.findAll().stream().map(i -> rConv.restaurantToDtoWSimple(i, id)).toList();
+        return rRepo.findAll().stream().map(i -> rConv.restaurantToDtoWSimple(i, id))
+                .filter(i -> i.getDistance() <= i.getMaxDeliveryDistance()).toList();
     }
 
     @GetMapping("/restaurant/full/{user_id}/{res_id}")
