@@ -29,6 +29,7 @@ public class RestaurantConverter {
                 .foodTypes(r.getFoodTypes())
                 .isOpen(isOpen(r))
                 .distance(calculateDistance(r, currentUser))
+                .maxDeliveryDistance(r.getMaxDeliveryDistance())
                 .build();
     }
 

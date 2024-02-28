@@ -17,6 +17,7 @@ public class RestaurantDtoWSimple {
     String name, imgUrl;
     private List<String> foodTypes;
     boolean isOpen;
+    private int maxDeliveryDistance;
     int distance;
 
 }
