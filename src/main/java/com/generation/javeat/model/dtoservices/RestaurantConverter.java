@@ -1,7 +1,6 @@
 package com.generation.javeat.model.dtoservices;
 
-import ava.
-
+import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,16 +9,18 @@ import com.generation.javeat.entities.Restaurant;
 import com.generation.javeat.entities.User;
 import com.generation.javeat.model.dto.resturant.RestaurantDtoWSimple;
 import com.generation.javeat.repositories.UserRepository;
+
 @Service
 public class RestaurantConverter {
 
     @Autowired
-    UserRepository uRepo; 
+    UserRepository uRepo;
+
     public RestaurantDtoWSimple restaurantToDtoWSimple(Restaurant r, Integer user_id) {
 
-        User currentUser = uRepo.f
+        User currentUser = uRepo.findById(user_id).get();
 
-           return RestaurantDtoWSimple
+        return RestaurantDtoWSimple
                 .builder()
                 .id(r.getId())
                 .name(r.getName())
@@ -30,9 +31,8 @@ public class RestaurantConverter {
                 .build();
     }
 
-    pri
+    private int calculateDistance(Restaurant r, User currentUser) {
 
-    
         int xr = r.getPositionX();
         int yr = r.getPositionY();
         int xu = currentUser.getPositionX();
@@ -45,6 +45,6 @@ public class RestaurantConverter {
 
     private boolean isOpen(Restaurant r) {
 
-        return LocalTime.now().isBefore(r.getClosingHour()) && LocalTime.now().isAfter(r.getOpeningHour());
+        return LocalTime.now().isBefore(r.getClosingHour());
     }
 }
