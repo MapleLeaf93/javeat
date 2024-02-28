@@ -23,5 +23,6 @@ public class RestaurantDtoWFull extends ResturantDtoBase {
     LocalTime openingHour, closingHour;
     int distance;
     Set<Dish> menu;
+    double deliveryPricePerUnit;
 
 }
