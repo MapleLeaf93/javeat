@@ -47,6 +47,7 @@ public class RestaurantConverter {
                 .closingHour(r.getClosingHour())
                 .distance(calculateDistance(r, currentUser))
                 .menu(r.getMenu().getDishes())
+                .deliveryPricePerUnit(r.getDeliveryPricePerUnit())
                 .build();
     }
 
