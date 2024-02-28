@@ -24,8 +24,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @SuperBuilder
 
-public class Delivery 
-{
+public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -45,7 +44,7 @@ public class Delivery
     private Restaurant restaurant;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "dishToDelivery", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "delivery", fetch = FetchType.EAGER)
     private Set<DishToDelivery> dishesDeliveries;
 
 }

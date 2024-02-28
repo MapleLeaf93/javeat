@@ -23,18 +23,16 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @SuperBuilder
 
-public class Menu 
-{
+public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "dish",fetch = FetchType.EAGER)
-    private Set <Dish> dishes;
+    @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER)
+    private Set<Dish> dishes;
 
     @JsonIgnore
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "restaurant_id")
+    @OneToOne(mappedBy = "menu", fetch = FetchType.EAGER)
     private Restaurant restaurant;
 }

@@ -5,11 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+@SuperBuilder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
-public class UserDtoRLog {
-    private String mail;
-    private String password;
+public class UserDtoWLog 
+{
+    private Integer id;
+    private String mail, password;
 }
