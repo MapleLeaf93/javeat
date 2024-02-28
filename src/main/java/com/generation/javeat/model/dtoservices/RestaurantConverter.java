@@ -45,6 +45,6 @@ public class RestaurantConverter {
 
     private boolean isOpen(Restaurant r) {
 
-        return LocalTime.now().isBefore(r.getClosingHour());
+        return LocalTime.now().isBefore(r.getClosingHour()) && LocalTime.now().isAfter(r.getOpeningHour());
     }
 }
