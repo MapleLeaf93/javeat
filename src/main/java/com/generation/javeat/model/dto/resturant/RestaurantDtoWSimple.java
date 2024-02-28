@@ -2,8 +2,6 @@ package com.generation.javeat.model.dto.resturant;
 
 import java.util.List;
 
-import com.generation.javeat.entities.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
