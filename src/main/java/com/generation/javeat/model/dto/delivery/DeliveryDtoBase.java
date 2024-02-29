@@ -1,6 +1,6 @@
 package com.generation.javeat.model.dto.delivery;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 
 public class DeliveryDtoBase {
     private int distance;
-    private LocalTime expected_arrival;
+    private LocalDateTime expected_arrival;
     private String payment_method;
     private String notes;
 }

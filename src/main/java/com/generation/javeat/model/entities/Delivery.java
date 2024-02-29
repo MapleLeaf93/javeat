@@ -1,6 +1,6 @@
 package com.generation.javeat.model.entities;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,7 +31,7 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private LocalTime expected_arrival;
+    private LocalDateTime expected_arrival;
     private int distance;
     private String payment_method, notes;
 
