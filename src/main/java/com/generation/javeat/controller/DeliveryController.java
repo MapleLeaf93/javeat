@@ -23,7 +23,7 @@ public class DeliveryController {
     @Autowired
     DeliveryRepository dRepo;
 
-    @PostMapping("/delivery")
+    @PostMapping("/delivery") // prende id ristorante, id user e lista piatti
     public ResponseEntity<?> insertDelivery(@RequestBody DeliveryDtoRPost dto) {
 
         Delivery d = dConv.DtoRToDelivery(dto);

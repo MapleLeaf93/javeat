@@ -1,12 +1,15 @@
 package com.generation.javeat.model.dtoservices;
 
 import java.time.LocalTime;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.generation.javeat.model.dto.delivery.DeliveryDtoRPost;
 import com.generation.javeat.model.entities.Delivery;
+import com.generation.javeat.model.entities.DishToDelivery;
 import com.generation.javeat.model.entities.Restaurant;
 import com.generation.javeat.model.entities.User;
 import com.generation.javeat.repositories.DeliveryRepository;
@@ -38,6 +41,7 @@ public class DeliveryConverter {
                 .notes(dto.getNotes())
                 .user(u)
                 .restaurant(r)
+                .dishesDeliveries(dto.getDishesDeliveries())
                 .build();
     }
 
