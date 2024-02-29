@@ -1,8 +1,7 @@
 package com.generation.javeat.model.dto.delivery;
 
-import java.util.Set;
-
-import com.generation.javeat.model.entities.DishToDelivery;
+import java.time.LocalTime;
+import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +16,7 @@ public class DeliveryDtoRPost extends DeliveryDtoBase {
 
     private Integer user_id;
     private Integer restaurant_id;
-    private Set<DishToDelivery> dishesDeliveries;
+    private LocalTime deliveryTime;
+    // piatto-quantita
+    private Map<Integer, Integer> idPiattoToQuantita;
 }
