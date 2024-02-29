@@ -33,7 +33,7 @@ public class Delivery {
 
     private LocalTime expected_arrival;
     private int distance;
-    private String paymentMethod, notes;
+    private String payment_method, notes;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)

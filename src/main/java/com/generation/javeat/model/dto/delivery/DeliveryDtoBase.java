@@ -12,10 +12,9 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 
-public class DeliveryDtoBase 
-{
+public class DeliveryDtoBase {
     private int distance;
     private LocalTime expected_arrival;
-    private String paymentMethod;
+    private String payment_method;
     private String notes;
 }
