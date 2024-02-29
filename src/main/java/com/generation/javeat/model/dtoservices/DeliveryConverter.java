@@ -4,6 +4,8 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +32,25 @@ public class DeliveryConverter {
 
     public Delivery DtoRToDelivery(DeliveryDtoRPost dto) {
 
-        Restaurant r = rRepo.findById(dto.getRestaurant_id()).get();
-        User u = uRepo.findById(dto.getRestaurant_id()).get();
+        Restaurant r = null;
+        Integer res_id = dto.getRestaurant_id();
+
+        if (res_id != null) {
+
+            Optional<Restaurant> or = rRepo.findById(res_id);
+            if (or.isPresent())
+                r = or.get();
+        }
+
+        User u = null;
+        Integer user_id = dto.getUser_id();
+
+        if (user_id != null) {
+
+            Optional<User> ou = uRepo.findById(user_id);
+            if (ou.isPresent())
+                u = ou.get();
+        }
 
         return Delivery
                 .builder()
