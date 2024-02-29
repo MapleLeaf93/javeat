@@ -2,7 +2,6 @@ package com.generation.javeat.model.entities;
 
 import java.time.LocalTime;
 import java.util.Set;
-import java.util.stream.Collector;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -57,7 +56,7 @@ public class Delivery {
 
     public double getRiderRevenue() {
 
-        return distance * restaurant.getDeliveryPricePerUnit() ;
+        return distance * restaurant.getDeliveryPricePerUnit();
     }
 
     public double getTotalPrice() {
