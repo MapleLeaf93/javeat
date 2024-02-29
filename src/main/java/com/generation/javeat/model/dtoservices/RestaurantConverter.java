@@ -1,6 +1,7 @@
 package com.generation.javeat.model.dtoservices;
 
 import java.time.LocalTime;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,14 @@ public class RestaurantConverter {
 
     public RestaurantDtoWSimple restaurantToDtoWSimple(Restaurant r, Integer user_id) {
 
-        User currentUser = uRepo.findById(user_id).get();
+        User currentUser = null;
+
+        if (user_id != null) {
+
+            Optional<User> ou = uRepo.findById(user_id);
+            if (ou.isPresent())
+                currentUser = ou.get();
+        }
 
         return RestaurantDtoWSimple
                 .builder()
@@ -35,7 +43,14 @@ public class RestaurantConverter {
 
     public RestaurantDtoWFull restaurantToDtoWFull(Restaurant r, Integer user_id) {
 
-        User currentUser = uRepo.findById(user_id).get();
+        User currentUser = null;
+
+        if (user_id != null) {
+
+            Optional<User> ou = uRepo.findById(user_id);
+            if (ou.isPresent())
+                currentUser = ou.get();
+        }
 
         return RestaurantDtoWFull
                 .builder()
