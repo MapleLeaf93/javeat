@@ -1,17 +1,21 @@
 package com.generation.javeat.model.dtoservices;
 
-import java.time.LocalTime;
-
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.generation.javeat.model.dto.delivery.DeliveryDtoRPost;
 import com.generation.javeat.model.entities.Delivery;
+import com.generation.javeat.model.entities.Dish;
+import com.generation.javeat.model.entities.DishToDelivery;
 import com.generation.javeat.model.entities.Restaurant;
 import com.generation.javeat.model.entities.User;
 import com.generation.javeat.repositories.DeliveryRepository;
+import com.generation.javeat.repositories.DishRepository;
 import com.generation.javeat.repositories.RestaurantRepository;
 import com.generation.javeat.repositories.UserRepository;
 
@@ -20,6 +24,9 @@ public class DeliveryConverter {
 
     @Autowired
     DeliveryRepository dRepo;
+
+    @Autowired
+    DishRepository pRepo;
 
     @Autowired
     UserRepository uRepo;
@@ -51,22 +58,40 @@ public class DeliveryConverter {
 
         return Delivery
                 .builder()
-                .expected_arrival(dto.getExpected_arrival())
+                .expected_arrival(dto.getDeliveryTime())
                 .distance(calculateDistance(r, u))
-                .paymentMethod(dto.getPaymentMethod())
-                .notes(dto.getNotes())
+                // .paymentMethod(dto.getPaymentMethod())
+                // .notes(dto.getNotes())
                 .user(u)
                 .restaurant(r)
-                .dishesDeliveries(dto.getDishesDeliveries())
+                .dishesDeliveries(riempiLista(dto.getIdPiattoToQuantita()))
                 .build();
     }
 
-    // private LocalTime calculateArrival(DeliveryDtoRPost dto) {
+    private Set<DishToDelivery> riempiLista(Map<Integer, Integer> mappa) {
 
-    // return LocalTime.now().plusHours(dto.getExpected_arrival().getHour())
-    // .plusMinutes(dto.getExpected_arrival().getMinute())
-    // .plusSeconds(dto.getExpected_arrival().getSecond());
-    // }
+        Set<DishToDelivery> dishesDeliveries = new HashSet<DishToDelivery>();
+
+        for (Map.Entry<Integer, Integer> entry : mappa.entrySet()) {
+
+            Dish d = null;
+            Integer dish_id = entry.getKey();
+
+            if (dish_id != null) {
+
+                Optional<Dish> od = pRepo.findById(dish_id);
+                if (od.isPresent())
+                    d = od.get();
+
+            }
+            DishToDelivery dtd = new DishToDelivery();
+            dtd.setDish(d);
+            dtd.setQuantity(entry.getValue());
+            dishesDeliveries.add(dtd);
+        }
+
+        return dishesDeliveries;
+    }
 
     private int calculateDistance(Restaurant r, User u) {
 
@@ -80,4 +105,10 @@ public class DeliveryConverter {
         return distanza;
     }
 
+    // private LocalTime calculateArrival(DeliveryDtoRPost dto) {
+
+    // return LocalTime.now().plusHours(dto.getExpected_arrival().getHour())
+    // .plusMinutes(dto.getExpected_arrival().getMinute())
+    // .plusSeconds(dto.getExpected_arrival().getSecond());
+    // }
 }

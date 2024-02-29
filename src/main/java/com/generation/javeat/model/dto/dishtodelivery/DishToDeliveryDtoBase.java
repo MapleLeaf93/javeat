@@ -10,7 +10,6 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 
-public class DishToDeliveryDtoBase 
-{
+public class DishToDeliveryDtoBase {
     private int quantity;
 }
