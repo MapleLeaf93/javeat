@@ -6,6 +6,8 @@ import java.util.Set;
 
 import java.util.Optional;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +56,7 @@ public class DeliveryConverter {
 
         return Delivery
                 .builder()
-                .expected_arrival(calculateArrival(dto))
+                .expected_arrival(dto.getExpected_arrival())
                 .distance(calculateDistance(r, u))
                 .paymentMethod(dto.getPaymentMethod())
                 .notes(dto.getNotes())
@@ -64,12 +66,12 @@ public class DeliveryConverter {
                 .build();
     }
 
-    private LocalTime calculateArrival(DeliveryDtoRPost dto) {
+    // private LocalTime calculateArrival(DeliveryDtoRPost dto) {
 
-        return LocalTime.now().plusHours(dto.getExpected_arrival().getHour())
-                .plusMinutes(dto.getExpected_arrival().getMinute())
-                .plusSeconds(dto.getExpected_arrival().getSecond());
-    }
+    // return LocalTime.now().plusHours(dto.getExpected_arrival().getHour())
+    // .plusMinutes(dto.getExpected_arrival().getMinute())
+    // .plusSeconds(dto.getExpected_arrival().getSecond());
+    // }
 
     private int calculateDistance(Restaurant r, User u) {
 
