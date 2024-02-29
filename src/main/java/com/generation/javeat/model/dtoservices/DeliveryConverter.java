@@ -58,7 +58,7 @@ public class DeliveryConverter {
 
         return Delivery
                 .builder()
-                .expected_arrival(dto.getDeliveryTime())
+                .expected_arrival(dto.getExpected_arrival())
                 .distance(calculateDistance(r, u))
                 .payment_method(dto.getPayment_method())
                 .notes(dto.getNotes())
