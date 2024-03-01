@@ -13,6 +13,7 @@ import com.generation.javeat.model.dto.delivery.DeliveryDtoRPost;
 import com.generation.javeat.model.dtoservices.DeliveryConverter;
 import com.generation.javeat.model.entities.Delivery;
 import com.generation.javeat.repositories.DeliveryRepository;
+import com.generation.javeat.repositories.DishToDeliveryRepository;
 
 @RestController
 public class DeliveryController {
@@ -23,11 +24,16 @@ public class DeliveryController {
     @Autowired
     DeliveryRepository dRepo;
 
+    @Autowired
+    DishToDeliveryRepository dtdRepo;
+
     @PostMapping("/delivery")
     public ResponseEntity<?> insertDelivery(@RequestBody DeliveryDtoRPost dto) {
 
         Delivery d = dConv.DtoRToDelivery(dto);
-        return new ResponseEntity<Delivery>(dRepo.save(d), HttpStatus.OK);
+        d = dRepo.save(d);
+        dtdRepo.saveAll(d.getDishesDeliveries());
+        return new ResponseEntity<Delivery>(d, HttpStatus.OK);
     }
 
 }

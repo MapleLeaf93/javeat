@@ -55,8 +55,7 @@ public class DeliveryConverter {
             if (ou.isPresent())
                 u = ou.get();
         }
-
-        return Delivery
+        Delivery delivery = Delivery
                 .builder()
                 .expected_arrival(dto.getExpected_arrival())
                 .distance(calculateDistance(r, u))
@@ -64,11 +63,14 @@ public class DeliveryConverter {
                 .notes(dto.getNotes())
                 .user(u)
                 .restaurant(r)
-                .dishesDeliveries(riempiLista(dto.getIdPiattoToQuantita()))
                 .build();
+
+        delivery.setDishesDeliveries(riempiLista(dto.getIdPiattoToQuantita(), delivery));
+
+        return delivery;
     }
 
-    private Set<DishToDelivery> riempiLista(Map<Integer, Integer> mappa) {
+    private Set<DishToDelivery> riempiLista(Map<Integer, Integer> mappa, Delivery delivery) {
 
         Set<DishToDelivery> dishesDeliveries = new HashSet<DishToDelivery>();
 
@@ -87,9 +89,9 @@ public class DeliveryConverter {
             DishToDelivery dtd = new DishToDelivery();
             dtd.setDish(d);
             dtd.setQuantity(entry.getValue());
+            dtd.setDelivery(delivery);
             dishesDeliveries.add(dtd);
         }
-
         return dishesDeliveries;
     }
 

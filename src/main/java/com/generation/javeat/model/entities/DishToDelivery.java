@@ -38,4 +38,9 @@ public class DishToDelivery {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
+
+    public String toString() {
+
+        return quantity + " " + dish + " " + delivery;
+    }
 }
