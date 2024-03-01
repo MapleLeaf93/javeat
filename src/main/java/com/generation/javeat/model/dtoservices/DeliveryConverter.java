@@ -1,5 +1,6 @@
 package com.generation.javeat.model.dtoservices;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.generation.javeat.model.dto.delivery.DeliveryDtoRPost;
+import com.generation.javeat.model.dto.delivery.DeliveryDtoWFull;
 import com.generation.javeat.model.entities.Delivery;
 import com.generation.javeat.model.entities.Dish;
 import com.generation.javeat.model.entities.DishToDelivery;
@@ -107,10 +109,17 @@ public class DeliveryConverter {
         return distanza;
     }
 
-    // private LocalTime calculateArrival(DeliveryDtoRPost dto) {
+    public DeliveryDtoWFull deliveryToDtoWFull(Delivery d) {
 
-    // return LocalTime.now().plusHours(dto.getExpected_arrival().getHour())
-    // .plusMinutes(dto.getExpected_arrival().getMinute())
-    // .plusSeconds(dto.getExpected_arrival().getSecond());
-    // }
+        return DeliveryDtoWFull
+                .builder()
+                .distance(d.getDistance())
+                .expected_arrival(d.getExpected_arrival())
+                .payment_method(d.getPayment_method())
+                .notes(d.getNotes())
+                .user(d.getUser())
+                .restaurant(d.getRestaurant())
+                .dishesDeliveries(d.getDishesDeliveries())
+                .build();
+    }
 }
