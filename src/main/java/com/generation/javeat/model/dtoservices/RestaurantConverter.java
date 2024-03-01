@@ -57,6 +57,7 @@ public class RestaurantConverter {
                 .id(r.getId())
                 .name(r.getName())
                 .imgUrl(r.getImgUrl())
+                .phone(r.getPhone())
                 .foodTypes(r.getFoodTypes())
                 .openingHour(r.getOpeningHour())
                 .closingHour(r.getClosingHour())
