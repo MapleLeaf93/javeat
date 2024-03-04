@@ -29,7 +29,7 @@ public class DishToDelivery {
 
     private int quantity;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dish_id")
     private Dish dish;
@@ -39,8 +39,4 @@ public class DishToDelivery {
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
-    public String toString() {
-
-        return quantity + " " + dish + " " + delivery;
-    }
 }

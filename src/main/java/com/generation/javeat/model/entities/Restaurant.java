@@ -44,7 +44,7 @@ public class Restaurant {
 
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "foodTypes", joinColumns = @JoinColumn(name = "restaurant_id"))
-    @Column(name = "foodType", nullable = false)
+    @Column(name = "foodType", nullable = true)
     private List<String> foodTypes;
 
     @JsonIgnore
@@ -54,7 +54,6 @@ public class Restaurant {
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
-
     private Set<Delivery> deliveries;
 
 }

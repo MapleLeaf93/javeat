@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.generation.javeat.model.dto.delivery.DeliveryDtoRPost;
 import com.generation.javeat.model.dto.delivery.DeliveryDtoWFull;
+import com.generation.javeat.model.dto.delivery.DeliveryDtoWRecap;
 import com.generation.javeat.model.entities.Delivery;
 import com.generation.javeat.model.entities.Dish;
 import com.generation.javeat.model.entities.DishToDelivery;
@@ -109,16 +110,20 @@ public class DeliveryConverter {
         return distanza;
     }
 
-    public DeliveryDtoWFull deliveryToDtoWFull(Delivery d) {
+    public DeliveryDtoWRecap deliveryToDtoWRecap(Delivery d) {
 
-        return DeliveryDtoWFull
+        Restaurant r = rRepo.findById(d.getRestaurant().getId()).get();
+
+        return DeliveryDtoWRecap
                 .builder()
-                .distance(d.getDistance())
+                .id(d.getId())
                 .expected_arrival(d.getExpected_arrival())
                 .payment_method(d.getPayment_method())
                 .notes(d.getNotes())
-                .user(d.getUser())
-                .restaurant(d.getRestaurant())
+                .total_price(d.getTotalPrice())
+                .restaurant_name(r.getName())
+                .img_url(r.getImgUrl())
+                .phone(r.getPhone())
                 .dishesDeliveries(d.getDishesDeliveries())
                 .build();
     }

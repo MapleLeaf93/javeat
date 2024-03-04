@@ -14,6 +14,7 @@ import org.springframework.web.service.annotation.GetExchange;
 
 import com.generation.javeat.model.dto.delivery.DeliveryDtoRPost;
 import com.generation.javeat.model.dto.delivery.DeliveryDtoWFull;
+import com.generation.javeat.model.dto.delivery.DeliveryDtoWRecap;
 import com.generation.javeat.model.dtoservices.DeliveryConverter;
 import com.generation.javeat.model.entities.Delivery;
 import com.generation.javeat.model.entities.User;
@@ -53,9 +54,9 @@ public class DeliveryController {
         if (user.getDeliveries().isEmpty())
             return new ResponseEntity<String>("Nessuna delivery", HttpStatus.BAD_REQUEST);
 
-        List<DeliveryDtoWFull> deliveries = user.getDeliveries().stream().map(e -> dConv.deliveryToDtoWFull(e))
+        List<DeliveryDtoWRecap> deliveries = user.getDeliveries().stream().map(e -> dConv.deliveryToDtoWRecap(e))
                 .toList();
-        return new ResponseEntity<List<DeliveryDtoWFull>>(deliveries, HttpStatus.OK);
+        return new ResponseEntity<List<DeliveryDtoWRecap>>(deliveries, HttpStatus.OK);
     }
 
 }
