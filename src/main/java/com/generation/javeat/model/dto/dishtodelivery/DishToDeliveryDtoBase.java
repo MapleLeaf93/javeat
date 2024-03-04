@@ -12,4 +12,6 @@ import lombok.experimental.SuperBuilder;
 
 public class DishToDeliveryDtoBase {
     private int quantity;
+    private String added_ingredients;
+    private String removed_ingredients;
 }

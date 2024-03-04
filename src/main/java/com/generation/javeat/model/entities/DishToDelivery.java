@@ -29,6 +29,10 @@ public class DishToDelivery {
 
     private int quantity;
 
+    // ingredienti aggiunti e rimossi
+    private String added_ingredients;
+    private String removed_ingredients;
+
     // @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dish_id")

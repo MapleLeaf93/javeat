@@ -3,6 +3,8 @@ package com.generation.javeat.model.entities;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import org.springframework.util.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -51,7 +53,18 @@ public class Delivery {
 
     public double getDishesPrice() {
 
-        return dishesDeliveries.stream().mapToDouble(i -> i.getDish().getPrice() * i.getQuantity()).sum();
+        return dishesDeliveries.stream()
+                .mapToDouble(i -> ((i.getDish().getPrice()) * i.getQuantity()) + count_added_ingredients(i)).sum();
+    }
+
+    public int count_added_ingredients(DishToDelivery d) {
+
+        int res = StringUtils.countOccurrencesOf(d.getAdded_ingredients(), ",");
+
+        if (d.getAdded_ingredients() == "")
+            return 0;
+
+        return res + 1;
     }
 
     public double getRiderRevenue() {

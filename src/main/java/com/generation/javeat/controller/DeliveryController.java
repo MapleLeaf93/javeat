@@ -52,7 +52,7 @@ public class DeliveryController {
         User user = uRepo.findById(id).get();
 
         if (user.getDeliveries().isEmpty())
-            return new ResponseEntity<String>("Nessuna delivery", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Nessuna delivery", HttpStatus.NOT_FOUND);
 
         List<DeliveryDtoWRecap> deliveries = user.getDeliveries().stream().map(e -> dConv.deliveryToDtoWRecap(e))
                 .toList();

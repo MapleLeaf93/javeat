@@ -1,6 +1,5 @@
 package com.generation.javeat.model.dtoservices;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.generation.javeat.model.dto.delivery.DeliveryDtoRPost;
-import com.generation.javeat.model.dto.delivery.DeliveryDtoWFull;
 import com.generation.javeat.model.dto.delivery.DeliveryDtoWRecap;
 import com.generation.javeat.model.entities.Delivery;
 import com.generation.javeat.model.entities.Dish;
@@ -68,19 +66,20 @@ public class DeliveryConverter {
                 .restaurant(r)
                 .build();
 
-        delivery.setDishesDeliveries(riempiLista(dto.getIdPiattoToQuantita(), delivery));
+        delivery.setDishesDeliveries(riempiLista(dto, delivery));
 
         return delivery;
     }
 
-    private Set<DishToDelivery> riempiLista(Map<Integer, Integer> mappa, Delivery delivery) {
+    private Set<DishToDelivery> riempiLista(DeliveryDtoRPost dto, Delivery delivery) {
 
         Set<DishToDelivery> dishesDeliveries = new HashSet<DishToDelivery>();
 
-        for (Map.Entry<Integer, Integer> entry : mappa.entrySet()) {
+        for (Map.Entry<Integer, DeliveryDtoRPost.DishDescription> entry : dto.getIdPiattoToQuantita().entrySet()) {
 
             Dish d = null;
             Integer dish_id = entry.getKey();
+            DeliveryDtoRPost.DishDescription description = entry.getValue();
 
             if (dish_id != null) {
 
@@ -91,12 +90,40 @@ public class DeliveryConverter {
             }
             DishToDelivery dtd = new DishToDelivery();
             dtd.setDish(d);
-            dtd.setQuantity(entry.getValue());
+            dtd.setQuantity(description.getQuantita());
+            dtd.setAdded_ingredients(description.getAdded_ingredients());
+            dtd.setRemoved_ingredients(description.getRemoved_ingredients());
             dtd.setDelivery(delivery);
             dishesDeliveries.add(dtd);
         }
         return dishesDeliveries;
     }
+
+    // private Set<DishToDelivery> riempiLista(Map<Integer,Integer> mappa, Delivery
+    // delivery) {
+
+    // Set<DishToDelivery> dishesDeliveries = new HashSet<DishToDelivery>();
+
+    // for (Map.Entry<Integer, Integer> entry : mappa.entrySet()) {
+
+    // Dish d = null;
+    // Integer dish_id = entry.getKey();
+
+    // if (dish_id != null) {
+
+    // Optional<Dish> od = pRepo.findById(dish_id);
+    // if (od.isPresent())
+    // d = od.get();
+
+    // }
+    // DishToDelivery dtd = new DishToDelivery();
+    // dtd.setDish(d);
+    // dtd.setQuantity(entry.getValue());
+    // dtd.setDelivery(delivery);
+    // dishesDeliveries.add(dtd);
+    // }
+    // return dishesDeliveries;
+    // }
 
     private int calculateDistance(Restaurant r, User u) {
 

@@ -18,5 +18,13 @@ public class DeliveryDtoRPost extends DeliveryDtoBase {
     private Integer restaurant_id;
     private LocalTime deliveryTime;
     // piatto-quantita
-    private Map<Integer, Integer> idPiattoToQuantita;
+    private Map<Integer, DishDescription> idPiattoToQuantita;
+
+    @Data
+    public class DishDescription {
+
+        private int quantita;
+        private String added_ingredients;
+        private String removed_ingredients;
+    }
 }
