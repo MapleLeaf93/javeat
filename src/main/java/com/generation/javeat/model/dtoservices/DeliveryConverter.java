@@ -144,6 +144,7 @@ public class DeliveryConverter {
         return DeliveryDtoWRecap
                 .builder()
                 .id(d.getId())
+                .id(d.getId())
                 .expected_arrival(d.getExpected_arrival())
                 .payment_method(d.getPayment_method())
                 .notes(d.getNotes())
