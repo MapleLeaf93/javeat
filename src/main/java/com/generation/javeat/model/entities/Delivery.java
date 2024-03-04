@@ -51,7 +51,7 @@ public class Delivery {
 
     public double getDishesPrice() {
 
-        return dishesDeliveries.stream().mapToDouble(i -> i.getDish().getPrice()).sum();
+        return dishesDeliveries.stream().mapToDouble(i -> i.getDish().getPrice() * i.getQuantity()).sum();
     }
 
     public double getRiderRevenue() {

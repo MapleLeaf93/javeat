@@ -36,6 +36,7 @@ public class Dish {
 
     private String name, category;
     private Double price;
+    private boolean customizable;
 
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "ingredients", joinColumns = @JoinColumn(name = "dish_id"))
@@ -48,6 +49,6 @@ public class Dish {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "menu_id")
+    @JoinColumn(name = "menu_id", nullable = true)
     private Menu menu;
 }

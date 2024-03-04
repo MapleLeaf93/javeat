@@ -4,7 +4,6 @@ import java.util.Set;
 
 import com.generation.javeat.model.entities.DishToDelivery;
 import com.generation.javeat.model.entities.Restaurant;
-import com.generation.javeat.model.entities.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,9 +14,11 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public class DeliveryDtoWFull extends DeliveryDtoBase{
+public class DeliveryDtoWFull extends DeliveryDtoBase {
 
-    private User user;
-    private Restaurant restaurant;
-    private Set<DishToDelivery> dishesDeliveries;
+    // distanza no aggiungere prezzo totale du delivery
+
+    private Restaurant restaurant; // solo nome e url e phone
+    private Set<DishToDelivery> dishesDeliveries; // piatti
+    // aggiungere id delivery
 }
