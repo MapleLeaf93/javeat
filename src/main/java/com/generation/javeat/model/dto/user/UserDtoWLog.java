@@ -9,8 +9,7 @@ import lombok.experimental.SuperBuilder;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDtoWLog 
-{
+public class UserDtoWLog {
     private Integer id;
-    private String mail, password;
+    private String mail, password, name;
 }
