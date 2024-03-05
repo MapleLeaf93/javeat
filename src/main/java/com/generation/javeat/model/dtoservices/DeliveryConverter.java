@@ -99,32 +99,6 @@ public class DeliveryConverter {
         return dishesDeliveries;
     }
 
-    // private Set<DishToDelivery> riempiLista(Map<Integer,Integer> mappa, Delivery
-    // delivery) {
-
-    // Set<DishToDelivery> dishesDeliveries = new HashSet<DishToDelivery>();
-
-    // for (Map.Entry<Integer, Integer> entry : mappa.entrySet()) {
-
-    // Dish d = null;
-    // Integer dish_id = entry.getKey();
-
-    // if (dish_id != null) {
-
-    // Optional<Dish> od = pRepo.findById(dish_id);
-    // if (od.isPresent())
-    // d = od.get();
-
-    // }
-    // DishToDelivery dtd = new DishToDelivery();
-    // dtd.setDish(d);
-    // dtd.setQuantity(entry.getValue());
-    // dtd.setDelivery(delivery);
-    // dishesDeliveries.add(dtd);
-    // }
-    // return dishesDeliveries;
-    // }
-
     private int calculateDistance(Restaurant r, User u) {
 
         int xr = r.getPositionX();

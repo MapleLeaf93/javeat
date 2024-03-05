@@ -16,6 +16,7 @@ public class UserConverter {
                 .mail(dto.getMail())
                 .password(dto.getPassword())
                 .phone(dto.getPhone())
+                .name(dto.getName())
                 .positionX(dto.getPositionX())
                 .positionY(dto.getPositionY())
                 .build();
