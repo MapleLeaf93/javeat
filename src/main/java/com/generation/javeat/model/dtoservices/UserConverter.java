@@ -26,6 +26,7 @@ public class UserConverter {
         return UserDtoWLog
                 .builder()
                 .id(u.getId())
+                .name(u.getName())
                 .mail(u.getMail())
                 .password(u.getPassword())
                 .build();
