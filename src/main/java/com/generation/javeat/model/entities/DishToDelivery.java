@@ -29,9 +29,8 @@ public class DishToDelivery {
 
     private int quantity;
 
-    // ingredienti aggiunti e rimossi
+    // ingredienti aggiunti
     private String added_ingredients;
-    private String removed_ingredients;
 
     // @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)

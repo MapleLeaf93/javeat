@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -30,30 +31,47 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @Entity
 @SuperBuilder
-
+@Schema(description = "Ristorante")
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "ID autoincrementale")
     private Integer id;
 
-    private String name, phone, imgUrl;
-    private LocalTime openingHour, closingHour;
-    private int positionX, positionY;
+    @Schema(description = "Nome ristorante")
+    private String name;
+    @Schema(description = "Numero di telefono")
+    private String phone;
+    @Schema(description = "Immagine ristorante")
+    private String imgUrl;
+    @Schema(description = "Orario apertura")
+    private LocalTime openingHour;
+    @Schema(description = "Orario chiusura")
+    private LocalTime closingHour;
+    @Schema(description = "Coordinata X")
+    private int positionX;
+    @Schema(description = "Coordinata Y")
+    private int positionY;
+    @Schema(description = "Massima distanza ")
     private int maxDeliveryDistance;
+    @Schema(description = "Prezzo spedizione per unità di distanza")
     private Double deliveryPricePerUnit;
 
     @ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "foodTypes", joinColumns = @JoinColumn(name = "restaurant_id"))
     @Column(name = "foodType", nullable = true)
+    @Schema(description = "Tipologia ristorante")
     private List<String> foodTypes;
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "menu", referencedColumnName = "id")
+    @Schema(description = "ID del menu")
     private Menu menu;
 
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
+    @Schema(description = "Lista di ordini del ristorante")
     private Set<Delivery> deliveries;
 
 }
