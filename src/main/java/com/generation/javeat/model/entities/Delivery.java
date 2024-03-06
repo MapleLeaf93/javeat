@@ -2,6 +2,7 @@ package com.generation.javeat.model.entities;
 
 import java.time.LocalDateTime;
 import java.util.Set;
+
 import java.text.DecimalFormat;
 
 import org.springframework.util.StringUtils;
@@ -75,14 +76,10 @@ public class Delivery {
 
     public double getTotalPrice() {
 
-        return getDishesPrice() + getRiderRevenue();
-
         // tronca i decimali
-        // DecimalFormat df = new DecimalFormat("#.##");
-        // df.setGroupingUsed(false);
-        // String numeroTroncato = df.format(totPrice);
-        // double numeroTroncatoDouble = Double.parseDouble(numeroTroncato);
+        double total = getDishesPrice() + getRiderRevenue();
+        double truncatedTotal = Math.floor(total * 100) / 100;
 
-        // return numeroTroncatoDouble;
+        return truncatedTotal;
     }
 }
