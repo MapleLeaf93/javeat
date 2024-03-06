@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,17 +25,24 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @Entity
 @SuperBuilder
-
+@Schema(description = "Utente da inserire in login, a cui sarà associato il carrello e gli acquisti")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Id autoincrementato")
     private Integer id;
-
-    private String mail, password, phone, name;
+    @Schema(description = "Mail robusta: almeno una lettera minuscola, una lettera maiuscola, la @, almeno un carattere speciale, almeno un numero, in generale composto da 2 a 7 lettere alfabetiche ")
+    private String mail;
+    @Schema(description = "Password robusta: almeno una lettera minuscola, una lettera maiuscola, una cifra e un carattere speciale")
+    private String password;
+    private String phone;
+    private String name;
+    @Schema(description = "la posizione è in unità")
     private int positionX, positionY;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @Schema(description = "una lista di ordini dell'utente")
     private List<Delivery> deliveries;
 
     public boolean isValidEmail(String email) {
