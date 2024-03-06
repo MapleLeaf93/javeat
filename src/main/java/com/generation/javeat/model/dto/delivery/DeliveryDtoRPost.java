@@ -21,7 +21,9 @@ public class DeliveryDtoRPost extends DeliveryDtoBase {
     private Map<Integer, DishDescription> idPiattoToQuantita;
 
     @Data
-    public class DishDescription {
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class DishDescription {
 
         private int quantita;
         private String added_ingredients;
