@@ -75,14 +75,14 @@ public class Delivery {
 
     public double getTotalPrice() {
 
-        double totPrice = getDishesPrice() + getRiderRevenue();
+        return getDishesPrice() + getRiderRevenue();
 
         // tronca i decimali
-        DecimalFormat df = new DecimalFormat("#.##");
-        df.setGroupingUsed(false);
-        String numeroTroncato = df.format(totPrice);
-        double numeroTroncatoDouble = Double.parseDouble(numeroTroncato);
+        // DecimalFormat df = new DecimalFormat("#.##");
+        // df.setGroupingUsed(false);
+        // String numeroTroncato = df.format(totPrice);
+        // double numeroTroncatoDouble = Double.parseDouble(numeroTroncato);
 
-        return numeroTroncatoDouble;
+        // return numeroTroncatoDouble;
     }
 }
