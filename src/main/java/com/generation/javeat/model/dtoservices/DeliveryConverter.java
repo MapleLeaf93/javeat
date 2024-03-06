@@ -92,7 +92,6 @@ public class DeliveryConverter {
             dtd.setDish(d);
             dtd.setQuantity(description.getQuantita());
             dtd.setAdded_ingredients(description.getAdded_ingredients());
-            dtd.setRemoved_ingredients(description.getRemoved_ingredients());
             dtd.setDelivery(delivery);
             dishesDeliveries.add(dtd);
         }

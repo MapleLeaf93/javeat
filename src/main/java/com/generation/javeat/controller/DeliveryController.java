@@ -20,6 +20,13 @@ import com.generation.javeat.repositories.DeliveryRepository;
 import com.generation.javeat.repositories.DishToDeliveryRepository;
 import com.generation.javeat.repositories.UserRepository;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 @RestController
 public class DeliveryController {
 
@@ -36,6 +43,10 @@ public class DeliveryController {
     DishToDeliveryRepository dtdRepo;
 
     @PostMapping("/delivery")
+    @Operation(description = "Inserisce nuova delivery sul db")
+    @ApiResponses(value = {
+            @ApiResponse(description = "Inserimento avvenuto con successo", responseCode = "200", useReturnTypeSchema = true, content = @Content(mediaType = "application/json", schema = @Schema(implementation = Delivery.class)))
+    })
     public ResponseEntity<?> insertDelivery(@RequestBody DeliveryDtoRPost dto) {
 
         Delivery d = dConv.DtoRToDelivery(dto);
@@ -45,7 +56,12 @@ public class DeliveryController {
     }
 
     @GetMapping("/delivery/{id}")
-    public ResponseEntity<?> getMyDeliveries(@PathVariable Integer id) {
+    @Operation(description = "Restituisce lista di ordini legate all'utente")
+    @ApiResponses(value = {
+            @ApiResponse(description = "Lista ordini trovata", responseCode = "200", useReturnTypeSchema = true, content = @Content(mediaType = "application/json", schema = @Schema(implementation = DeliveryDtoWRecap.class))),
+            @ApiResponse(description = "Lista ordini non trovata", responseCode = "404", content = @Content(mediaType = "text"))
+    })
+    public ResponseEntity<?> getMyDeliveries(@PathVariable @Parameter(description = "id utente") Integer id) {
 
         User user = uRepo.findById(id).get();
 

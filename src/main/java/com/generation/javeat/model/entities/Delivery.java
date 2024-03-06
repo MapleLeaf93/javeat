@@ -3,8 +3,6 @@ package com.generation.javeat.model.entities;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import java.text.DecimalFormat;
-
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,24 +32,33 @@ import lombok.experimental.SuperBuilder;
 public class Delivery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "id autoincrementale")
     private Integer id;
 
+    @Schema(description = "orario di consegna")
     private LocalDateTime expected_arrival;
+    @Schema(description = "distanza tra ristorante e utente")
     private int distance;
-    private String payment_method, notes;
+    @Schema(description = "metodo di pagamento")
+    private String payment_method;
+    @Schema(description = "note dell'utente")
+    private String notes;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+    @Schema(description = "utente che effettua ordine")
     private User user;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id")
+    @Schema(description = "Ristorante che riceve l'ordine")
     private Restaurant restaurant;
 
     @JsonIgnore
     @OneToMany(mappedBy = "delivery", fetch = FetchType.EAGER)
+    @Schema(description = "collega informazioni dish a delivery")
     private Set<DishToDelivery> dishesDeliveries;
 
     public double getDishesPrice() {
